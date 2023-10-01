@@ -23,15 +23,21 @@
   <div class="tasks">
     <!-- Список задач -->
     <div class="task" th:each="el: ${tasks}">
-      <p th:text="${el.getText()}"/>
-      <button th:text="${el.isCompleted()}"/>
-      <button>Delete</button>
+      <span th:text="${el.text}"/>
+      <form th:action="'/api/task/' + ${el.taskId} + '/completed'" method="post">
+        <button type="submit" th:text="${el.completed}"/>
+      </form>
+      <form th:action="'/api/task/' + ${el.taskId} + '/delete'" method="post">
+        <button type="submit">
+          Delete
+        </button>
+      </form>
     </div>
   </div>
 
   <div class="new-task">
     <!-- Форма для добавления новой задачи -->
-    <form action="/tasks" method="post">
+    <form action="/api/task/add" method="post">
       <input type="text" name="task" placeholder="Enter new task" class="form-input">
       <button type="submit" class="form-btn">Add task</button>
     </form>

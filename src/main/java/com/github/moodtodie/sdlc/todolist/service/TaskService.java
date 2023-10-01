@@ -12,9 +12,8 @@ public class TaskService {
   TaskRepository repository;
 
   public void taskCompleted(Long taskId, boolean completed) {
-    TaskEntity task = repository.getReferenceById(taskId);
+    TaskEntity task = repository.findById(taskId).orElseThrow();
     task.setCompleted(completed);
-    repository.deleteById(taskId);
     repository.save(task);
   }
 
@@ -26,7 +25,11 @@ public class TaskService {
     repository.deleteById(id);
   }
 
-  public Iterable<TaskEntity> getAllTasks(){
+  public Iterable<TaskEntity> getAllTasks() {
     return repository.findAll();
+  }
+
+  public TaskEntity getTask(Long id) {
+    return repository.findById(id).orElseThrow();
   }
 }
