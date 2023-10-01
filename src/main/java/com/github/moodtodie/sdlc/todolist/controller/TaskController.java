@@ -1,62 +1,53 @@
 package com.github.moodtodie.sdlc.todolist.controller;
 
+import com.github.moodtodie.sdlc.todolist.manager.TaskManager;
+import com.github.moodtodie.sdlc.todolist.model.TaskEntity;
+import com.github.moodtodie.sdlc.todolist.repository.TaskRepository;
 import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.HttpStatus;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-@RestController
-@RequestMapping(name = "/task")
-public class TaskController {
+import java.util.Collections;
 
+@RestController
+@RequestMapping(value = "/api/task")
+public class TaskController {
   private static final Logger logger = LoggerFactory.getLogger(TaskController.class);
 
-//    @Autowired
-//    private TaskRepository taskRepository;
+  @Autowired
+  private TaskRepository repository;
 
-  @GetMapping("/add")
-  public HttpStatus add(@Valid @RequestParam(value = "task", defaultValue = "") String task) {
+  @PostMapping("/add")
+  public String add(@RequestParam(value = "task", defaultValue = "") String task) {
+    if (task.isEmpty()) return "error";
 
-    if (task.isEmpty()) return HttpStatus.BAD_REQUEST;
+    TaskManager.addTask(repository, task);
 
-    logger.info("Getting add request | task=\"" + task + "\"");
-//        taskRepository.save(new TaskEntity(new Task(0, task, false)));
-
-    return HttpStatus.ACCEPTED;
+    return "greeting";
   }
 
-//  @PostMapping("/add")
-//  public String addTask(@RequestBody String task) {
-//    HttpStatus status = add(task.substring(5));
-//    return (status.equals(HttpStatus.ACCEPTED)) ? "Задача успешно добавлена" : "Ошибка: Задача не добавлена!";
-//  }
+  @PostMapping("/status")
+  public String setStatus(@Valid @RequestParam(value = "id", defaultValue = "") Long id,
+                          @Valid @RequestParam(value = "status", defaultValue = "false") boolean status) {
+    TaskManager.setStatus(repository, id, status);
+    return "greeting";
+  }
 
-//    @GetMapping("/all")
-//    public List<TaskEntity> getAll() {
-//        return taskRepository.findAll();
-//    }
+  @GetMapping("/delete")
+  public String delete(@RequestParam(value = "id", defaultValue = "") Long id) {
+    repository.deleteById(id);
+    return "Deleted";
+  }
 
-//    @GetMapping("/add")
-//    public HttpStatus add(@Valid @RequestParam(value = "task", defaultValue = "") String task) {
-//
-//        if (task.isEmpty())
-//            return HttpStatus.BAD_REQUEST;
-//
-//        logger.info("Getting add request | task=\"" + task + "\"");
-//        ToDoList.add(task);
-//        taskRepository.save(new TaskEntity());
-//
-//        return HttpStatus.ACCEPTED;
-//    }
+  @GetMapping("/get")   //  FIX
+  public String get(@Valid @RequestParam(value = "id", defaultValue = "") Long id) {
+    return repository.getReferenceById(id).toString();
+  }
 
-//    @GetMapping("/get")
-//    public String get(@Valid @RequestParam(value = "task_id", defaultValue = "-1") Long taskId) {
-//        return (taskId != -1) ? ToDoList.get(taskId) : "null";
-//    }
-
-//    @GetMapping("/all")
-//    public String[] getAll() {
-//        return ToDoList.getList();
-//    }
+  @GetMapping("/all")
+  public @ResponseBody Iterable<TaskEntity> getAll() {
+    return repository.findAll();
+  }
 }

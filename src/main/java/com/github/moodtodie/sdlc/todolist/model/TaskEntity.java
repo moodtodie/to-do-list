@@ -23,6 +23,22 @@ public class TaskEntity {
   @Column(name = "fk_user_id", nullable = false)
   private Long fkUserId;
 
+  public TaskEntity() {
+    this.status = false;
+  }
+
+  public TaskEntity(String text, boolean status) {
+    this.text = text;
+    this.status = status;
+    this.fkUserId = 0L;
+  }
+
+  public TaskEntity(String text, boolean status, Long fkUserId) {
+    this.text = text;
+    this.status = status;
+    this.fkUserId = fkUserId;
+  }
+
   public Long getTaskId() {
     return taskId;
   }
