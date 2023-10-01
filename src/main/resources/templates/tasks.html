@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
   <meta charset="UTF-8">
   <title>To-Do List</title>
@@ -22,14 +22,23 @@
 
   <div class="tasks">
     <!-- Список задач -->
+    <div class="task" th:each="el: ${tasks}">
+      <p th:text="${el.getText()}"/>
+      <button th:text="${el.isCompleted()}"/>
+      <button>Delete</button>
+    </div>
   </div>
+
   <div class="new-task">
     <!-- Форма для добавления новой задачи -->
-    <form action="/list/add" method="post">
-        <input type="text" name="task" placeholder="Enter new task">
-        <button type="submit">Add task</button>
+    <form action="/tasks" method="post">
+      <input type="text" name="task" placeholder="Enter new task" class="form-input">
+      <button type="submit" class="form-btn">Add task</button>
     </form>
   </div>
 </div>
+
+<!--<div th:insert="blocks/footer :: footer"></div>-->
+
 </body>
 </html>

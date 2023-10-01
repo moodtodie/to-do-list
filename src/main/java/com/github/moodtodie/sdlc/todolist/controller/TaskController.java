@@ -1,53 +1,45 @@
 package com.github.moodtodie.sdlc.todolist.controller;
 
-import com.github.moodtodie.sdlc.todolist.manager.TaskManager;
+import com.github.moodtodie.sdlc.todolist.service.TaskService;
 import com.github.moodtodie.sdlc.todolist.model.TaskEntity;
-import com.github.moodtodie.sdlc.todolist.repository.TaskRepository;
 import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Collections;
 
 @RestController
 @RequestMapping(value = "/api/task")
 public class TaskController {
   private static final Logger logger = LoggerFactory.getLogger(TaskController.class);
 
-  @Autowired
-  private TaskRepository repository;
+  private TaskService service;
+
+  public TaskController(TaskService service) {
+    this.service = service;
+  }
 
   @PostMapping("/add")
   public String add(@RequestParam(value = "task", defaultValue = "") String task) {
     if (task.isEmpty()) return "error";
-
-    TaskManager.addTask(repository, task);
-
-    return "greeting";
+    service.addTask(task);
+    return "redirect:/tasks";
   }
 
-  @PostMapping("/status")
+  @PostMapping("/completed")
   public String setStatus(@Valid @RequestParam(value = "id", defaultValue = "") Long id,
-                          @Valid @RequestParam(value = "status", defaultValue = "false") boolean status) {
-    TaskManager.setStatus(repository, id, status);
-    return "greeting";
+                          @Valid @RequestParam(value = "completed", defaultValue = "false") boolean completed) {
+    service.taskCompleted(id, completed);
+    return "success";
   }
 
   @GetMapping("/delete")
   public String delete(@RequestParam(value = "id", defaultValue = "") Long id) {
-    repository.deleteById(id);
-    return "Deleted";
-  }
-
-  @GetMapping("/get")   //  FIX
-  public String get(@Valid @RequestParam(value = "id", defaultValue = "") Long id) {
-    return repository.getReferenceById(id).toString();
+    service.deleteTask(id);
+    return "success";
   }
 
   @GetMapping("/all")
   public @ResponseBody Iterable<TaskEntity> getAll() {
-    return repository.findAll();
+    return service.getAllTasks();
   }
 }

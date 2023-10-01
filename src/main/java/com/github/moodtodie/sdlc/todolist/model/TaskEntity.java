@@ -18,24 +18,30 @@ public class TaskEntity {
   private String text;
 
   @Column(name = "task_status", nullable = false)
-  private boolean status;
+  private boolean completed;
 
   @Column(name = "fk_user_id", nullable = false)
   private Long fkUserId;
 
   public TaskEntity() {
-    this.status = false;
+    this.completed = false;
   }
 
-  public TaskEntity(String text, boolean status) {
+  public TaskEntity(String text) {
     this.text = text;
-    this.status = status;
+    this.completed = false;
     this.fkUserId = 0L;
   }
 
-  public TaskEntity(String text, boolean status, Long fkUserId) {
+  public TaskEntity(String text, boolean completed) {
     this.text = text;
-    this.status = status;
+    this.completed = completed;
+    this.fkUserId = 0L;
+  }
+
+  public TaskEntity(String text, boolean completed, Long fkUserId) {
+    this.text = text;
+    this.completed = completed;
     this.fkUserId = fkUserId;
   }
 
@@ -51,12 +57,12 @@ public class TaskEntity {
     this.text = text;
   }
 
-  public boolean isStatus() {
-    return status;
+  public boolean isCompleted() {
+    return completed;
   }
 
-  public void setStatus(boolean status) {
-    this.status = status;
+  public void setCompleted(boolean completed) {
+    this.completed = completed;
   }
 
   public Long getFkUserId() {
