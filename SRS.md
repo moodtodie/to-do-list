@@ -16,15 +16,15 @@ To-Do List is web applications that allow users to create and keep track of task
 
 You must register before using it for the first time
 
-<img src="https://github.com/moodtodie/to-do-list/blob/main/mockups/sing_up.jpg" alt="Window for user registration">
+<img src="https://github.com/moodtodie/to-do-list/blob/main/mockups/sing_up.png" alt="Window for user registration">
 
 In case you already have an account, you just need to log in.
 
-<img src="https://github.com/moodtodie/to-do-list/blob/main/mockups/log_in.jpg" alt="Login window">
+<img src="https://github.com/moodtodie/to-do-list/blob/main/mockups/log_in.png" alt="Login window">
 
 After registration/authorization you can finally start using To-Do List
 
-<img src="https://github.com/moodtodie/to-do-list/blob/main/mockups/list.jpg" alt="Main application window">
+<img src="https://github.com/moodtodie/to-do-list/blob/main/mockups/list.png" alt="Main application window">
 
 ### 2.3 Users Characteristics
 
