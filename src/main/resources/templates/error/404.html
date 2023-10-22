@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>404 | To-Do List</title>
+
+  <div th:replace="~{fragments/header :: header-css}"/>
+</head>
+
+<div th:replace="~{fragments/header :: header}"/>
+
+<body>
+<div class="container">
+  <h1>404 - Not Found</h1>
+  <p>The page you want to go to does not exist.</p>
+  <a href="/tasks">Go to tasks page!</a>
+</div>
+</body>
+</html>

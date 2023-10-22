@@ -1,0 +1,45 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <div th:fragment="header-css">
+    <meta charset="UTF-8">
+
+    <!-- this is header-css -->
+    <!--    <link rel="stylesheet" type="text/css"-->
+    <!--          href="webjars/bootstrap/3.3.7/css/bootstrap.min.css" />-->
+
+    <link rel="stylesheet" th:href="@{/css/style.css}"
+          href="../../static/css/style.css"/>
+
+    <link rel="shortcut icon" th:href="@{/icon/favicon.ico}" href="../../static/icon/favicon.ico">
+
+    <!-- Font style -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&display=swap" rel="stylesheet">
+  </div>
+</head>
+
+<body>
+<div th:fragment="header">
+  <!-- this is header -->
+  <nav class="navbar navbar-inverse">
+    <div class="container navbar-header">
+      <div class="collapse navbar-collapse">
+        <a th:href="@{/home}">Home</a>
+      </div>
+      <div class="collapse navbar-collapse">
+        <a href="/tasks">Tasks</a>
+      </div>
+      <div class="collapse navbar-collapse">
+        <a href="/api/task/all">API</a>
+      </div>
+      <div class="collapse navbar-collapse navbar-logout">
+        <form th:action="@{/logout}" method="post">
+          <input type="submit" value="Sign Out"/>
+        </form>
+      </div>
+    </div>
+  </nav>
+</div>
+</body>
+</html>

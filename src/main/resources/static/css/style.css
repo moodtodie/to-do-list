@@ -1,0 +1,105 @@
+body {
+    background-color: #ffffff;
+    font-family: 'Comfortaa', cursive;
+    font-size: 14pt;
+}
+
+.navbar {
+    background-color: cornflowerblue;
+    padding: 5px;
+}
+
+.navbar-header {
+    /*align-items: ;*/
+    display: flex;
+    justify-content: center;
+}
+
+.navbar-collapse {
+    margin: auto;
+}
+
+.navbar-logout form button {
+    font-size: 12pt;
+    color: cornflowerblue;
+
+    background-color: #ffffff;
+    width: 30%;
+
+    margin: 0 auto;
+    padding: 5px;
+    /*border: 1px solid cornflowerblue;*/
+}
+
+.navbar-logout form button:focus {
+    background-color: red;
+}
+
+h3 {
+    text-align: center;
+    color: cornflowerblue;
+}
+
+.container {
+    width: 500px;
+    margin: 0 auto;
+}
+
+.tasks {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.task {
+    margin-bottom: 10px;
+}
+
+.task li {
+    border: 1px solid cornflowerblue;
+    padding: 10px;
+    background-color: #ffffff;
+}
+
+.task li:hover {
+    background-color: #d9d9d9;
+}
+
+.new-task {
+    margin-top: 10px;
+}
+
+.new-task form {
+    width: 100%;
+    align-items: center;
+}
+
+.new-task form input {
+    font-size: 12pt;
+
+    width: 100%;
+    padding: 5px;
+    margin-bottom: 3px;
+    border: 1px solid cornflowerblue;
+}
+
+/*.new-task form input:focus {*/
+/*    !*border: 1px solid darkslateblue;*!*/
+/*}*/
+
+.new-task form button {
+    font-size: 12pt;
+    color: cornflowerblue;
+
+    background-color: #ffffff;
+    width: 30%;
+
+    margin: 0 auto;
+    padding: 5px;
+    border: 1px solid cornflowerblue;
+}
+
+.new-task form button:hover {
+    background-color: cornflowerblue;
+    color: white;
+}

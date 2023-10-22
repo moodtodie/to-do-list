@@ -1,24 +1,17 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>To-Do List</title>
+  <title>Tasks | To-Do List</title>
 
-  <!-- Font style -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&display=swap" rel="stylesheet">
-
-  <link rel="stylesheet" href="style.css">
+  <div th:replace="~{fragments/header :: header-css}"/>
 </head>
+
+<div th:replace="~{fragments/header :: header}"/>
 
 <body>
 <div class="container">
-  <div>
-    <a href="/">Go to greeting page</a>
-  </div>
 
-  <h3>Tasks:</h3>
+  <h3>My tasks:</h3>
 
   <div class="tasks">
     <!-- Список задач -->
