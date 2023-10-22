@@ -8,12 +8,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class GreetingController {
-  private static final Logger logger = LoggerFactory.getLogger(GreetingController.class);
+public class MainController {
+  private static final Logger logger = LoggerFactory.getLogger(MainController.class);
 
-  private TaskService service;
+  private final TaskService service;
 
-  public GreetingController(TaskService service) {
+  public MainController(TaskService service) {
     this.service = service;
   }
 
