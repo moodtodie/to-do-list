@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 public class TaskController {
   private static final Logger logger = LoggerFactory.getLogger(TaskController.class);
 
-  private TaskService service;
+  private final TaskService service;
 
   public TaskController(TaskService service) {
     this.service = service;

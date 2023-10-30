@@ -1,11 +1,6 @@
 package com.github.moodtodie.sdlc.todolist.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Column;
-import jakarta.persistence.Table;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "tasks")
@@ -27,22 +22,16 @@ public class TaskEntity {
     this.completed = false;
   }
 
-  public TaskEntity(String text) {
-    this.text = text;
-    this.completed = false;
-    this.fkUserId = 0L;
-  }
-
   public TaskEntity(String text, boolean completed) {
     this.text = text;
     this.completed = completed;
     this.fkUserId = 0L;
   }
 
-  public TaskEntity(String text, boolean completed, Long fkUserId) {
+  public TaskEntity(String text, boolean completed, Long userId) {
     this.text = text;
     this.completed = completed;
-    this.fkUserId = fkUserId;
+    this.fkUserId = userId;
   }
 
   public Long getTaskId() {
@@ -51,10 +40,6 @@ public class TaskEntity {
 
   public String getText() {
     return text;
-  }
-
-  public void setText(String text) {
-    this.text = text;
   }
 
   public boolean isCompleted() {
@@ -67,9 +52,5 @@ public class TaskEntity {
 
   public Long getFkUserId() {
     return fkUserId;
-  }
-
-  public void setFkUserId(Long fkUserId) {
-    this.fkUserId = fkUserId;
   }
 }

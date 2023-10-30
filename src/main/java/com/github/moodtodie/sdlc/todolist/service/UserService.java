@@ -3,42 +3,47 @@ package com.github.moodtodie.sdlc.todolist.service;
 import com.github.moodtodie.sdlc.todolist.model.UserEntity;
 import com.github.moodtodie.sdlc.todolist.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
+import java.util.List;
+
 @Service
-public class UserService {
+public class UserService implements UserDetailsService {
   @Autowired
   UserRepository repository;
 
-  public boolean addUser(String username, String email, String password) {
+  public boolean addUser(String username, String password) {
     if (!findUser(username).isExist())
       return false;
-//    repository.save(new UserEntity(username, email, password));
     repository.save(new UserEntity(username, password));
     return true;
   }
 
-  public boolean logInUser(String username, String password) {
-    UserEntity user = findUser(username);
-    return user.isExist() && user.getPassword().equals(password);
-//    repository.save(new UserEntity(username, password));
-  }
-
-  public boolean deleteUser(String username, String password) {
-    UserEntity user = findUser(username);
-    if (!user.isExist() || !user.getPassword().equals(password))
-      return false;
-
-    repository.delete(user);
-    return true;
-  }
-
   public UserEntity findUser(String username) {
-    return repository.findByUsername(username);
-//    return repository.getById(0L);
+    return repository.findByUsername(username).get();
   }
 
-//  public Long getUserId() {
-//    return 0L;
-//  }
+  public Iterable<UserEntity> getAll() {
+    return repository.findAll();
+  }
+
+  public Long getUserId() {
+    return 0L;  //  Debug option
+  }
+
+  @Override
+  public User loadUserByUsername(String username) throws UsernameNotFoundException {
+    var userFromDb = repository.findByUsername(username)
+        .orElseThrow(() -> new UsernameNotFoundException("No user found with this email address."));
+    List<GrantedAuthority> authorities = new java.util.ArrayList<>(Collections.emptyList());
+
+    authorities.add((GrantedAuthority) () -> userFromDb.getRole());
+
+    return new User(userFromDb.getUsername(), userFromDb.getPassword(), authorities);
+  }
 }

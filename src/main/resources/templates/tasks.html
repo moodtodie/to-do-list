@@ -30,7 +30,7 @@
 
   <div class="new-task">
     <!-- Форма для добавления новой задачи -->
-    <form action="/api/task/add" method="post">
+    <form th:action="'/api/task/add'" method="post">
       <input type="text" name="task" placeholder="Enter new task" class="form-input">
       <button type="submit" class="form-btn">Add task</button>
     </form>

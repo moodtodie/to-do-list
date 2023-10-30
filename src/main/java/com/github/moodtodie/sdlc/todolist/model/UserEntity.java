@@ -1,17 +1,12 @@
 package com.github.moodtodie.sdlc.todolist.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Column;
-import jakarta.persistence.Table;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "users")
 public class UserEntity {
   @Id
-  @GeneratedValue(strategy = GenerationType.SEQUENCE)
+  @GeneratedValue(strategy = GenerationType.AUTO)
   private Long userId;
 
   @Column(name = "username", nullable = false)
@@ -20,20 +15,20 @@ public class UserEntity {
   @Column(name = "passwd", nullable = false)
   private String password;
 
+  @Column(name = "role", nullable = false)
+  private String role;
+
   public UserEntity() {
   }
 
   public UserEntity(String username, String password) {
     this.username = username;
     this.password = password;
+    this.role = Role.USER.name();
   }
 
   public Long getUserId() {
     return userId;
-  }
-
-  public void setUserId(Long userId) {
-    this.userId = userId;
   }
 
   public String getUsername() {
@@ -54,5 +49,9 @@ public class UserEntity {
 
   public boolean isExist() {
     return !username.isEmpty();
+  }
+
+  public String getRole() {
+    return role;
   }
 }

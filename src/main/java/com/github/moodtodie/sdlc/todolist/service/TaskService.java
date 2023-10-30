@@ -29,6 +29,10 @@ public class TaskService {
     return repository.findAll();
   }
 
+  public Iterable<TaskEntity> getTasksByUserId(Long id) {
+    return repository.findAllByFkUserId(id);
+  }
+
   public TaskEntity getTask(Long id) {
     return repository.findById(id).orElseThrow();
   }
