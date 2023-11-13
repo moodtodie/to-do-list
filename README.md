@@ -7,3 +7,5 @@ Web applications for to-do list management
 > [Requirements Document](https://github.com/moodtodie/to-do-list/blob/main/SRS.md)
 
 > [Mockups](https://github.com/moodtodie/to-do-list/blob/main/mockups)
+
+> [Diagrams](https://github.com/moodtodie/to-do-list/blob/main/diagrams)
