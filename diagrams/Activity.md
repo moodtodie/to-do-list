@@ -12,7 +12,7 @@
 
 ### 2. Registration in the application<a name="2"></a>
 
-![Registration in the application](https://github.com/moodtodie/to-do-list/blob/main/diagrams/images/activities/SingUp.png)
+![Registration in the application](https://github.com/moodtodie/to-do-list/blob/main/diagrams/images/activities/SignUp.png)
 
 ### 3. Adding a task<a name="3"></a>
 

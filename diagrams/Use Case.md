@@ -1,6 +1,6 @@
 # Use case diagram
 
-![Use case diagram](https://github.com/DanutaGagua/Personal-film-collection-manager/blob/master/Diagrams/Images/UseCase.png)
+![Use case diagram](https://github.com/moodtodie/to-do-list/blob/main/diagrams/images/UseCase.png)
 
 # Glossary
 
