@@ -32,17 +32,13 @@ public class UserService implements UserDetailsService {
     return repository.findAll();
   }
 
-  public Long getUserId() {
-    return 0L;  //  Debug option
-  }
-
   @Override
   public User loadUserByUsername(String username) throws UsernameNotFoundException {
     var userFromDb = repository.findByUsername(username)
         .orElseThrow(() -> new UsernameNotFoundException("No user found with this email address."));
     List<GrantedAuthority> authorities = new java.util.ArrayList<>(Collections.emptyList());
 
-    authorities.add((GrantedAuthority) () -> userFromDb.getRole());
+    authorities.add((GrantedAuthority) userFromDb::getRole);
 
     return new User(userFromDb.getUsername(), userFromDb.getPassword(), authorities);
   }

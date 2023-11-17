@@ -1,5 +1,6 @@
 package com.github.moodtodie.sdlc.todolist.config;
 
+import com.github.moodtodie.sdlc.todolist.model.Role;
 import com.github.moodtodie.sdlc.todolist.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -20,9 +21,8 @@ public class SecurityConfig {
         .authorizeHttpRequests((requests) -> requests
             .requestMatchers("/tasks", "/api/task/add",
                 "/api/task/completed", "/api/task/delete",
-                "/api/task/*/completed", "/api/task/*/delete")
-            .authenticated()
-            .requestMatchers("/api/task/all", "/api/user/**").hasRole("ADMIN")
+                "/api/task/*/completed", "/api/task/*/delete").authenticated()
+            .requestMatchers("/api/task/all", "/api/user/**").hasRole(Role.ADMIN.name())
             .anyRequest().permitAll()
         )
         .formLogin((form) -> form
