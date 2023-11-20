@@ -4,22 +4,27 @@
   <title>Tasks | To-Do List</title>
 
   <div th:replace="~{fragments/header :: header-css}"/>
+
+  <script th:inline="javascript" th:src="@{/script/modal-edit.js}"></script>
 </head>
 
+<!--  Header:  -->
 <div th:replace="~{fragments/header :: header}"/>
 
 <body>
 <div class="container">
-
+  <!--  Title: Task list  -->
   <h3>My tasks:</h3>
 
+  <!--  List: Task list  -->
   <div class="tasks">
-    <!-- Список задач -->
     <div class="task" th:each="el: ${tasks}">
-      <span th:text="${el.text}"/>
+      <span class="task-text" th:text="${el.text}"/>
       <form th:action="'/api/task/' + ${el.taskId} + '/completed'" method="post">
         <button type="submit" th:text="${el.completed}"/>
       </form>
+      <button th:data-el="${el.taskId} + ' ' + ${el.text}" th:onclick="openModal(this.getAttribute('data-el'))"
+              th:text="Edit"/>
       <form th:action="'/api/task/' + ${el.taskId} + '/delete'" method="post">
         <button type="submit">
           Delete
@@ -28,8 +33,8 @@
     </div>
   </div>
 
+  <!--  Field: Add new task  -->
   <div class="new-task">
-    <!-- Форма для добавления новой задачи -->
     <form th:action="'/api/task/add'" method="post">
       <input type="text" name="task" placeholder="Enter new task" class="form-input">
       <button type="submit" class="form-btn">Add task</button>
@@ -37,6 +42,18 @@
   </div>
 </div>
 
+<!--  Modal window: Edit task  -->
+<div class="edit-modal">
+  <div class="edit-modal-content">
+    <h4>Edit your task:</h4>
+    <span class="modal-task-id" style="display: none"></span>
+    <input class="modal-text" type="text" placeholder="Your task">
+    <button class="modal-confirm-btn" onclick="sendModal()">Confirm</button>
+    <button class="modal-cancel-btn" onclick="closeModal()">Cancel</button>
+  </div>
+</div>
+
+<!--  Footer:  -->
 <!--<div th:insert="blocks/footer :: footer"></div>-->
 
 </body>

@@ -11,6 +11,12 @@ public class TaskService {
   @Autowired
   TaskRepository repository;
 
+  public void editTask(Long taskId, String text) {
+    TaskEntity task = repository.findById(taskId).orElseThrow();
+    task.setText(text);
+    repository.save(task);
+  }
+
   public void taskCompleted(Long taskId, boolean completed) {
     TaskEntity task = repository.findById(taskId).orElseThrow();
     task.setCompleted(completed);

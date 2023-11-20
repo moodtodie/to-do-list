@@ -46,6 +46,10 @@ public class TaskEntity {
     return completed;
   }
 
+  public void setText(String text) {
+    this.text = text;
+  }
+
   public void setCompleted(boolean completed) {
     this.completed = completed;
   }

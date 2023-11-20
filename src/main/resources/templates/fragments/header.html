@@ -25,13 +25,13 @@
   <nav class="navbar navbar-inverse">
     <div class="container navbar-header">
       <div class="collapse navbar-collapse">
-        <a th:href="@{/home}">Home</a>
+        <a href="/home">Home</a>
       </div>
       <div class="collapse navbar-collapse">
         <a href="/tasks">Tasks</a>
       </div>
       <div class="collapse navbar-collapse">
-        <a href="/api/task/all">API</a>
+        <a href="/swagger-ui.html">API</a>
       </div>
       <div class="collapse navbar-collapse navbar-logout">
         <form th:action="@{/logout}" method="post">

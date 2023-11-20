@@ -42,12 +42,21 @@ public class TaskController {
 
   @PostMapping("/{id}/completed")
   public ResponseEntity<Void> reverseCompleted(@PathVariable(value = "id") Long id) {
+    logger.info("Task No." + id + " changed status");
     service.taskCompleted(id, !service.getTask(id).isCompleted());
+    return ResponseEntity.status(HttpStatus.FOUND).header("Location", "/tasks").build();
+  }
+
+  @PostMapping("/{id}/edit/")
+  public ResponseEntity<Void> edit(@PathVariable(value = "id") Long id, @RequestParam(value = "text") @NotBlank String text) {
+    logger.info("Task No." + id + " has been changed to \"" + text + "\"");
+    service.editTask(id, text);
     return ResponseEntity.status(HttpStatus.FOUND).header("Location", "/tasks").build();
   }
 
   @PostMapping("/{id}/delete")
   public ResponseEntity<Void> delete2(@PathVariable(value = "id") Long id) {
+    logger.info("Task No." + id + " has been deleted");
     service.deleteTask(id);
     return ResponseEntity.status(HttpStatus.FOUND).header("Location", "/tasks").build();
   }
