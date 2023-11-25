@@ -21,10 +21,10 @@ public class UserEntity {
   public UserEntity() {
   }
 
-  public UserEntity(String username, String password) {
+  public UserEntity(String username, String password, String role) {
     this.username = username;
     this.password = password;
-    this.role = Role.USER.name();
+    this.role = role;
   }
 
   public Long getUserId() {
@@ -45,10 +45,6 @@ public class UserEntity {
 
   public void setPassword(String password) {
     this.password = password;
-  }
-
-  public boolean isExist() {
-    return !username.isEmpty();
   }
 
   public String getRole() {

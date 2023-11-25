@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+  <title>Sign Up | To-Do List</title>
+
+  <div th:replace="~{fragments/header :: header-css}"/>
+</head>
+
+<body>
+
+<!--  Header:  -->
+<div th:replace="~{fragments/header :: header}"/>
+
+<div class="container">
+  <div class="registration">
+    <form action="/registration" method="post" th:object="${user}">
+      <label for="username">Username:</label>
+      <input type="text" id="username" name="username" th:field="*{username}" required>
+      <br>
+
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" th:field="*{password}" required>
+      <br>
+
+      <label for="matchingPassword">Confirm Password:</label>
+      <input type="password" id="matchingPassword" name="matchingPassword" th:field="*{matchingPassword}" required>
+      <br>
+
+      <button type="submit">Register</button>
+    </form>
+  </div>
+
+  <a href="/login">Sign In</a>
+</div>
+</body>
+</html>
