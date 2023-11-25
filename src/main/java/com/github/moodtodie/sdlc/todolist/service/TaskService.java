@@ -23,8 +23,8 @@ public class TaskService {
     repository.save(task);
   }
 
-  public void addTask(String task) {
-    repository.save(new TaskEntity(task, false));
+  public void addTask(Long uid, String task) {
+    repository.save(new TaskEntity(uid, task, false));
   }
 
   public void deleteTask(Long id) {

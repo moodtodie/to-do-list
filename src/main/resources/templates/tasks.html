@@ -37,6 +37,7 @@
   <!--  Field: Add new task  -->
   <div class="new-task">
     <form th:action="'/api/task/add'" method="post">
+      <input type="hidden" name="uid" style="display: none" th:value="${uid}">
       <input type="text" name="task" placeholder="Enter new task" class="form-input">
       <button type="submit" class="form-btn">Add task</button>
     </form>

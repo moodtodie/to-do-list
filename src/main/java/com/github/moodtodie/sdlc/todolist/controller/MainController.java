@@ -70,6 +70,7 @@ public class MainController {
         , uid, uService.findUser(principal.getName()).getRole()));
 
     model.addAttribute("tasks", service.getTasksByUserId(uid));
+    model.addAttribute("uid", uid);
     return "tasks";
   }
 }

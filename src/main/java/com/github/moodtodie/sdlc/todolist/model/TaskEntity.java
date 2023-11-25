@@ -22,10 +22,10 @@ public class TaskEntity {
     this.completed = false;
   }
 
-  public TaskEntity(String text, boolean completed) {
+  public TaskEntity(Long uid, String text, boolean completed) {
     this.text = text;
     this.completed = completed;
-    this.fkUserId = 0L;
+    this.fkUserId = uid;
   }
 
   public TaskEntity(String text, boolean completed, Long userId) {

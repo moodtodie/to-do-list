@@ -22,8 +22,9 @@ public class TaskController {
   }
 
   @PostMapping("/add")
-  public ResponseEntity<Void> add(@NotBlank @RequestParam(value = "task", defaultValue = "") String task) {
-    service.addTask(task);
+  public ResponseEntity<Void> add(@Valid @RequestParam(value = "uid", defaultValue = "0") Long uid,
+                                  @NotBlank @RequestParam(value = "task", defaultValue = "") String task) {
+    service.addTask(uid, task);
     return ResponseEntity.status(HttpStatus.FOUND).header("Location", "/tasks").build();
   }
 
