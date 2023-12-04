@@ -16,8 +16,8 @@
 
 ## Introduction
 
-This document describes the testing plan of the WEB-application ["To-Do List"](https:///github.com/moodtodie/to-do-list). 
-The document is intended for QA. 
+This document describes the testing plan of the WEB-application ["To-Do List"](https:///github.com/moodtodie/to-do-list).  
+The document is intended for QA.  
 The purpose of testing is to check if the real behavior of the project program corresponds to its expected behavior. The expected results are formed on the basis of [requirements](https://github.com/moodtodie/to-do-list/blob/main/SRS.md).
 
 
@@ -57,10 +57,10 @@ In this case, the risks may include:
 
 During testing it is planned to check the implementation of the main functions of the application. Aspects to be tested:
 
-1 [Running the WEB-application](#running-the-web-application);
-2 [Navigate between application pages](#navigate-between-application-pages);
-3 [Task list interaction](#task-list-interaction);
-4 [User authentication](#user-authentication).
+1 [Running the WEB-application](#running-the-web-application);  
+2 [Navigate between application pages](#navigate-between-application-pages);  
+3 [Task list interaction](#task-list-interaction);  
+4 [User authentication](#user-authentication).  
 
 Note: An Internet connection is assumed when testing all aspects.
 
